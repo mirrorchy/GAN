@@ -1,4 +1,4 @@
-# GAN
+# GAN的应用与延伸
 ## 主要框架
 1. 万物皆可GAN？（陈涵玥）
 	——基于Pix2pix和CycleGAN的多种任务实现
@@ -8,12 +8,12 @@
 	——CAAE
 
 ## Pix2pix&CycleGAN
-### 环境部署
+### 1 环境部署
 * Python 3
-* PyTorch
+* PyTorch 0.4+
 * Tensorflow 2.0以下
 
-### 代码功能说明
+### 2 代码功能说明
 参考代码：https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
 
 
@@ -44,7 +44,7 @@ enhance.py用于数据集的增强，修改数据集文件夹的地址，和加�
 >python3 test.py --dataroot ./datasets/mytest/color/landscape --name color2 --model colorization 
 
 	其中mytest/color/landscape可以换成datasets中其他测试图片的文件夹地址,例如在测试人物图片时输入:
-	> python3 test.py --dataroot ./datasets/mytest/color/people --name color2 --model colorization 
+> python3 test.py --dataroot ./datasets/mytest/color/people --name color2 --model colorization 
 
 
 * 测试模型的选择
@@ -82,12 +82,55 @@ enhance.py用于数据集的增强，修改数据集文件夹的地址，和加�
 
 	--name之后 style_monet可以替换为checkpoints中的其他cycleGAN预训练模型
 
-### 实验效果总结
+### 3 实验效果总结
+#### Pix2pix
+1. 收集一些人像和风景图片建立数据集，初始时大量为风景照，人像占比约1/10。训练模型保留在checkpoints/color_pix2pix中。
+2. 训练到85epoch观察到风景图片虽然部分颜色不能完全还原但是整体效果良好，且继续训练变化不大，但是人物灰度图像色彩化效果差。
+	风景照色彩化效果良好；在一些原始色彩不是很常见的风景照中（如天空粉色的霞光、整体偏黄的场景）虽然色彩化图像与ground truth不同，但是符合普遍认知，参见示例图
+
+	而人物图像还原效果经常出现整体偏蓝，或者脸部出现其他色斑的情况，且皮肤颜色失真。观察数据集发现人物图像较少，所以尝试修改数据集使得模型更适用于人物肖像的色彩化
+
+以上结果可以在results/color_pix2pix中看到，保留了5个训练模型的测试结果（风景照为1xx开头，肖像为imgxx开头）
+
+3. 新建立大部分为人像少部分为风景的数据集（由于人像数据收集少，自主编写enhance.py进行数据增强）
+4. 由于已经有部分颜色在之前主要是风景照的训练中已经有较好的对应（如植被的绿色、天空的蓝色等），因此尝试利用代码中提供的continue_train模式，在之前的模型参数的基础上进行新数据集的训练。训练模型保留在checkpoints/color2中。
+	在新模型中可以看到人物皮肤的颜色更加真实，但是效果不太稳定。有较大波动，且同一模型对不同照片色彩化效果偏差较大。
+
+	总结各种人物照片还原结果，可以大致概括出：
+	1. 对于原始色彩较为单一的场景还原效果好；
+	2. 依然会出现有色斑的情况；
+	3. 人脸在画面中占比过大或过小更容易出现较大偏差。
+
+以上结果可以在results/color2中看到
+
+#### CycleGAN
+在进行自己的梵高画风肖像的实验中，由于CPU运行较慢，因此模型效果不佳。
+这一部分主要采用参考代码中的预训练模型。
+* 图像风格迁移
+分别对Monet, Cezanne, Van Gogh, Ukiyoe四种画风进行了测试，得到的结果保存在在results文件夹中。
+	测试集中不同类型风景照效果均较好。
+	对自己的测试数据，选择电脑合成图像，拍摄的偏灰白图像，人物肖像三张图片进行测试。
+	整体测试效果表现出：
+	1. 对不同画风色彩的偏好，勾勒轮廓时笔画的粗细的模拟比较好。
+	2. 对于画家的笔触没有准确模拟。比如在梵高画风中常用较短笔触进行颜色覆盖，此类特征难以表现。
+	3. 在人像上无论是风格化还是画还原为照片效果都不好，推测原因是数据集大多为风景照。
+
+* 地图的转换
+对测试集中街道图像还原为卫星图像进行了测试，效果良好。又选用未名湖街道地图和清朝畅春园地图进行测试。
+	测试过程中
+	1. 房屋、水域、绿地的对应关系清晰，效果好。
+	2. 不同街道地图的颜色对应关系不同，因此自己的测试数据可能效果不理想。
+	3. 街道和树木的遮盖关系难以表现。
+
+* 物体之间的转换
+测试了从橙子到苹果转换的预训练模型，由于训练集的选择不当，此部分出现很大偏差。且背景的判断和分离较为困难。
 
 
+#### 参考文献
+Jun-Yan Zhu, Taesung Park, Phillip Isola, Alexei A. Efros. *Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks*. ICCV 2017
 
-### 参考文献
-
+Image-to-Image Translation with Conditional Adversarial Networks.
+Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, Alexei A. Efros. In CVPR 2017.
 
 ## StyleGAN
 
@@ -99,4 +142,6 @@ enhance.py用于数据集的增强，修改数据集文件夹的地址，和加�
 ### 数据集
 UTKFace，约21万张带有标记的人脸照片
 ### 代码功能
+
+
 
