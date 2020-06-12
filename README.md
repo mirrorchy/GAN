@@ -132,8 +132,7 @@ enhance.py用于数据集的增强，修改数据集文件夹的地址，和加�
 #### 参考文献
 Jun-Yan Zhu, Taesung Park, Phillip Isola, Alexei A. Efros. *Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks*. ICCV 2017
 
-Image-to-Image Translation with Conditional Adversarial Networks.
-Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, Alexei A. Efros. In CVPR 2017.
+Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, Alexei A. Efros. *Image-to-Image Translation with Conditional Adversarial Networks*. CVPR 2017.
 
 ## StyleGAN
 
