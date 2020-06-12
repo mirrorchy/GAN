@@ -134,7 +134,52 @@ Jun-Yan Zhu, Taesung Park, Phillip Isola, Alexei A. Efros. *Unpaired Image-to-Im
 
 Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, Alexei A. Efros. *Image-to-Image Translation with Conditional Adversarial Networks*. CVPR 2017.
 
-## StyleGAN
+## StyleGAN2 && StyleGAN2 Encoder
+### 环境部署
+* Python 3.6
+* Tensorflow 1.14.0
+* keras
+### 模型
+百度网盘: https://pan.baidu.com/s/1_cRyamHP_Amj0srCbiB5_g
+提取码: cnby
+### 代码功能
+StyleGAN2:
+* pretrained_networks.py 模型位置
+* training/networks_stylegan2.py 核心网络结构
+
+StyleGAN2 Encoder:
+* pretrained_networks.py 模型位置
+* config.py 路径设置
+* move_and_show.py 主代码文件
+
+### 运行流程
+StyleGAN2:
+1.安装GPU，没有16GB的GPU可以使用Google Colab
+2.更换Tensorflow版本至1.14
+3.下载预训练的模型，放入models文件夹下
+4.修改pretrained_networks.py中该模型的路径
+5.运行:
+$ python run_generator.py generate-images --network=gdrive:networks/stylegan2-ffhq-config-f.pkl --seeds=6600-6625 --truncation-psi=0.5
+
+StyleGAN2 Encoder:
+1.2.3.同上
+4.获取人脸编辑向量:https://github.com/a312863063/generators-with-stylegan2
+  将“generaters-with-stylegan2-master\latent-direcitons”整个目录copy到“stylegan2encoder-master\ffhq_dataset”目录下
+5.运行：
+$ python align_images.py raw_images/ aligned_images/
+$ python encode_images.py aligned_images/ generated_images/ latent_representations/ --lr 1.3 --iterations 1000 --randomize_noise True
+$ python move_and_show.py
+
+### 实验结果：
+1.StyleGAN2能生成清晰的人像图片，如论文中所说，背景干净，没有伪影存在
+2.StyleGAN2的训练要求过高，一般只能直接用它提供的模型，从a到f的六个模型，优化程度是依次提高的，a是StyleGAN基础模型，b消除了液滴伪影，c通过延迟正则化提高了处理速度，d提高图像质量，e消除了阶段性伪影，f再次提高图像质量，也就是我们使用的这个模型
+3.StyleGAN2 Encoder利用StyleGAN2提取的人脸latents重建人脸图像，通过将latents与我们定义的修改变量混合，可实现微笑、侧脸、面部年轻化等效果
+4.StyleGAN2 Encoder在有眼镜的人脸处理上还有一些问题，初版的StyleGAN Encoder似乎反而效果更好
+
+### 参考文献：
+“Image2StyleGAN: How to Embed Images Into the StyleGAN Latent Space?”. Rameen Abdal, Yipeng Qin, Peter Wonka.
+"Analyzing and Improving the Image Quality of StyleGAN". Tero Karras, Samuli Laine, Miika Aittala, Janne Hellsten, Jaakko Lehtinen, Timo Aila.
+
 
 ## FaceAging-CAAE
 ### 环境部署
