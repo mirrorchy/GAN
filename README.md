@@ -64,3 +64,7 @@ enhance.py用于数据集的增强，修改数据集文件夹的地址，和加�
 ## StyleGAN
 
 ## CAAE
+### 环境部署
+* Python 3
+* PyTorch
+* Tensorflow 1.4
