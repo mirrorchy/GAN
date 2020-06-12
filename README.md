@@ -66,5 +66,9 @@ enhance.py用于数据集的增强，修改数据集文件夹的地址，和加�
 ## CAAE
 ### 环境部署
 * Python 3
-* PyTorch
-* Tensorflow 1.4
+* Tensorflow 1.7.0
+* Scipy 1.0.0
+### 数据集
+UTKFace，约21万张带有标记的人脸照片
+### 代码功能
+
