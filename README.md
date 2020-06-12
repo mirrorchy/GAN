@@ -103,3 +103,28 @@ UTKFace，约21万张带有标记的人脸照片。在data文件夹下解压UTKF
 > python main.py
 
 该训练过程中epoch为50，使用独立显卡可以较快地完成。受限于硬件设施，本项目使用笔记本电脑的CPU进行训练，50个epoch共耗时75小时33分钟。
+
+训练过程中会创建一个新的文件夹./save，其中包含summary，samples，test和checkpoint。
+* ./save/samples保存每个epoch的重构图像。
+* ./save/test保存每个epoch测试的结果。
+* ./save/chechpoint保存模型。
+* ./save/summary保存batch wise losses，可视化的方法：
+>cd save/summary
+>tensorboard --logdir
+
+* test
+>python main.py --is_train False --testdir your_image_dir --savedir save
+
+正常运行的情况下，屏幕会输出以下代码：
+
+	Building graph ...
+	
+	Testing Mode
+
+	Loading pre-trained model ...
+	SUCCESS ^_^
+
+	Done! Results are saved as save/test/test_as_xxx.png
+
+* files
+* FaceAging.py 用来
