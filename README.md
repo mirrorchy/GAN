@@ -97,6 +97,8 @@ enhance.py用于数据集的增强，修改数据集文件夹的地址，和加�
 * Tensorflow 1.7.0
 * Scipy 1.0.0
 ### 数据集
-UTKFace，约21万张带有标记的人脸照片
+UTKFace，约21万张带有标记的人脸照片。在data文件夹下解压UTKFace.tar.gz即可。
 ### 代码功能
-
+* train
+> python main.py
+该训练过程中epoch为50，使用独立显卡可以较快地完成。受限于硬件设施，本项目使用笔记本电脑的CPU进行训练，50个epoch共耗时75小时33分钟。
