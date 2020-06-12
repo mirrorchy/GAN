@@ -143,9 +143,6 @@ Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, Alexei A. Efros. In CVPR 2017.
 UTKFace，约21万张带有标记的人脸照片。在data文件夹下解压UTKFace.tar.gz即可。
 ### 代码功能
 
-<<<<<<< HEAD
-
-=======
 该部分代码在文件夹FaceAging中。
 
 #### train
@@ -161,6 +158,7 @@ UTKFace，约21万张带有标记的人脸照片。在data文件夹下解压UTKF
 >cd save/summary
 >tensorboard --logdir
 
+为了可视化的目的我们对它进行了低通滤波。原始的记录保存在summary文件夹中。
 #### test
 >python main.py --is_train False --testdir your_image_dir --savedir save
 
@@ -179,8 +177,13 @@ UTKFace，约21万张带有标记的人脸照片。在data文件夹下解压UTKF
 * FaceAging.py 用来构建和初始化CAAE模型，并且完成训练和测试。
 * ops.py 包含FaceAging.py调用的各种函数，实现卷积、去卷积、全连接、ReLU、加载和保存图像等功能。
 * main.py为调用FaceAging.py的主程序。
-
+### 实验结果
+* 1~10 epoch时，生成的假脸真实度较低，人脸年龄的区分度也较差。
+* 11~30 epoch时，生成的人脸真实度尚可，可以比较清晰地看出每个人在不同年龄段的相貌。
+* 31~50 epoch时，生成真实度较高的、年龄区分明显的图像组合。
+* 该训练模型对脸部特征清晰、周围无干扰环境的图像效果较好，生成的图像从婴幼儿（0至5岁）到老年人（70至80岁）都比较清晰，而对相对模糊的图像
+效果就较差。在本次训练过程中，大部分白人的效果较好，而大部分黑人的轮廓特征不太明显，这就和图片的清晰度等因素有关，比如训练集中的黑人图像
+面部特征不突出。
 ### 参考文献
 Zhifei Zhang, Yang Song, and Hairong Qi. "Age Progression/Regression by Conditional Adversarial Autoencoder." IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2017.
->>>>>>> b4ce1fa4d50307349000f05f3acf63494a70caaf
 
