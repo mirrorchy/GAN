@@ -134,14 +134,53 @@ Phillip Isola, Jun-Yan Zhu, Tinghui Zhou, Alexei A. Efros. In CVPR 2017.
 
 ## StyleGAN
 
-## CAAE
+## FaceAging-CAAE
 ### 环境部署
 * Python 3
 * Tensorflow 1.7.0
 * Scipy 1.0.0
 ### 数据集
-UTKFace，约21万张带有标记的人脸照片
+UTKFace，约21万张带有标记的人脸照片。在data文件夹下解压UTKFace.tar.gz即可。
 ### 代码功能
 
+<<<<<<< HEAD
 
+=======
+该部分代码在文件夹FaceAging中。
+
+#### train
+> python main.py
+
+该训练过程中epoch为50，使用独立显卡可以较快地完成。受限于硬件设施，本项目使用笔记本电脑的CPU进行训练，50个epoch共耗时75小时33分钟。
+
+训练过程中会创建一个新的文件夹./save，其中包含summary，samples，test和checkpoint。
+* ./save/samples保存每个epoch的重构图像。
+* ./save/test保存每个epoch测试的结果。
+* ./save/chechpoint保存模型。
+* ./save/summary保存batch wise losses，可视化的方法：
+>cd save/summary
+>tensorboard --logdir
+
+#### test
+>python main.py --is_train False --testdir your_image_dir --savedir save
+
+正常运行的情况下，屏幕会输出以下代码：
+
+	Building graph ...
+	
+	Testing Mode
+
+	Loading pre-trained model ...
+	SUCCESS ^_^
+
+	Done! Results are saved as save/test/test_as_xxx.png
+
+#### files
+* FaceAging.py 用来构建和初始化CAAE模型，并且完成训练和测试。
+* ops.py 包含FaceAging.py调用的各种函数，实现卷积、去卷积、全连接、ReLU、加载和保存图像等功能。
+* main.py为调用FaceAging.py的主程序。
+
+### 参考文献
+Zhifei Zhang, Yang Song, and Hairong Qi. "Age Progression/Regression by Conditional Adversarial Autoencoder." IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2017.
+>>>>>>> b4ce1fa4d50307349000f05f3acf63494a70caaf
 
