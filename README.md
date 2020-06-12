@@ -158,6 +158,7 @@ UTKFace，约21万张带有标记的人脸照片。在data文件夹下解压UTKF
 >cd save/summary
 >tensorboard --logdir
 
+为了可视化的目的我们对它进行了低通滤波。原始的记录保存在summary文件夹中。
 #### test
 >python main.py --is_train False --testdir your_image_dir --savedir save
 
