@@ -15,7 +15,10 @@
 
 ### 2 代码功能说明
 参考代码：https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
-（此处由于上传文件大小限制未上传checkpoints中训练好的模型，模型链接：）
+
+（此处由于上传文件大小限制未上传checkpoints中训练好的模型，模型链接：https://pan.baidu.com/s/1SeSAMDzaysmsHlFG1FW8aQ  密码:yn5f）
+
+说明：百度网盘中存有自己训练的color_pix2pix模型和color2模型，均只保留了最后一次训练的生成网络，可以用于test,但不能用于continue_train
 
 #### Enhance
 enhance.py用于数据集的增强，修改数据集文件夹的地址，和加强后的保存地址，运行enhance.py
