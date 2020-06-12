@@ -71,7 +71,7 @@ enhance.py用于数据集的增强，修改数据集文件夹的地址，和加�
 在梵高画风肖像实验中输入：
 >python3 train.py --dataroot ./datasets/style_vangogh --name vangogh_portrait --model cycle_gan --display_id -1 --gpu_ids -1 --no_html --lr 0.0002
 
-	style_vangogh中为自己经过数据集增强建立的肖像画数据集
+	style_vangogh中为自己经过数据集增强建立的肖像画数据集（此repo中style_vangogh数据集为扩充前数据）
 
 在进行其他实验时，从参考代码中的数据集下载链接下载训练集和测试集: http://people.eecs.berkeley.edu/~taesung_park/CycleGAN/datasets/
 
