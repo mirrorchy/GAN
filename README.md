@@ -91,7 +91,7 @@ enhance.py用于数据集的增强，修改数据集文件夹的地址，和加�
 
 ## StyleGAN
 
-## CAAE
+## FaceAging-CAAE
 ### 环境部署
 * Python 3
 * Tensorflow 1.7.0
@@ -131,4 +131,6 @@ UTKFace，约21万张带有标记的人脸照片。在data文件夹下解压UTKF
 * ops.py 包含FaceAging.py调用的各种函数，实现卷积、去卷积、全连接、ReLU、加载和保存图像等功能。
 * main.py为调用FaceAging.py的主程序。
 
+### 参考文献
+Zhifei Zhang, Yang Song, and Hairong Qi. "Age Progression/Regression by Conditional Adversarial Autoencoder." IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2017.
 
