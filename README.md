@@ -11,6 +11,7 @@
 ### 1 环境部署
 * Python 3
 * PyTorch 0.4+
+* scipy
 * Tensorflow 2.0以下
 
 ### 2 代码功能说明
