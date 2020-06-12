@@ -87,3 +87,11 @@ style_vangogh中为自己经过数据集增强建立的肖像画数据集
 ## StyleGAN
 
 ## CAAE
+### 环境部署
+* Python 3
+* Tensorflow 1.7.0
+* Scipy 1.0.0
+### 数据集
+UTKFace，约21万张带有标记的人脸照片
+### 代码功能
+
