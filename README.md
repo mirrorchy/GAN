@@ -1,10 +1,10 @@
 # GAN的应用与延伸
 ## 主要框架
-1. 万物皆可GAN？（陈涵玥）
+1. 万物皆可GAN？
 	——基于Pix2pix和CycleGAN的多种任务实现
-2. GAN在具体任务中的针对性改进（谭淑敏）
+2. GAN在具体任务中的针对性改进
 	——StyleGAN2 生成人像
-3. GAN思想的延伸（耿云腾）
+3. GAN思想的延伸
 	——CAAE
 
 ## Pix2pix&CycleGAN
